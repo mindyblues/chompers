@@ -1,6 +1,7 @@
 # creature.py
+from PyQt5.QtCore import *
 
-class Creature:
+class Creature(QObject):
     # these are the traits of the creatures
     def __init__(self, price = 0, strength = 0, stamina = 0, intelligence = 0,
         speed = 0, ferocity = 0, domcolor = None, seccolor = None, inbreeding = 0, mutation = 0, name = "Unknown",
@@ -95,3 +96,6 @@ class Creature:
         self.m_domcolor = color
     def setSecColor(self, color):
         self.m_seccolor = color
+############################## QT STUFF #################
+    def handle_clicked(self):
+        qDebug('test message')

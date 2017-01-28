@@ -41,7 +41,7 @@ def generateBaseGrid(listofcreatures):
 #Strength | Speed | stamina
 #Intelligence | Ferocity
     for creature in listofcreatures:
-        print creature
+        print(creature)
 
 def generateRandomName():
     namelist = ["Albert","Alamo","Bartholomew","Babble","Caleb","Cairo","Douglas","Disaster","Edmund","Egypt",
