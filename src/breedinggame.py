@@ -23,5 +23,3 @@ def GameLoop():
     print "for real cheap."
     print "\n"
     print "\n"
-
-print generateBaseCreature()

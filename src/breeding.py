@@ -1,6 +1,7 @@
 # breeding.py
 import random
 from creature import Creature
+
 def chooseFerocity(Parent1,Parent2):
     innateferocity = 0
     chance = random.uniform(0,100)
@@ -61,11 +62,11 @@ def chooseStamina(Parent1,Parent2):
 def checkMutation(Parent1,Parent2):
     mutationlevel = 0
     chance = random.randint(0,1000)
-    print chance
+    print(chance)
     if (Parent1.getMutationNumber() + Parent2.getMutationNumber()) == 0:
         if ((0 < chance) and (chance < 935)):
             mutationlevel = 0
-            print mutationlevel
+            print(mutationlevel)
         elif ((935 < chance) and (chance < 985)):
             mutationlevel = 1
         elif ((985 < chance) and (chance < 995)):
@@ -121,7 +122,7 @@ def giveMutationType2(mutationlevel):
         else:
             mutationnumber = 205
     elif (mutationlevel == 2):
-        if((0 < chance) and (chance < 33)):
+        if ((0 < chance) and (chance < 33)):
             mutationnumber = 301
         if ((33 < chance) and (chance < 66)):
             mutationnumber = 302
@@ -131,13 +132,70 @@ def giveMutationType2(mutationlevel):
         mutationnumber = 401
     return mutationnumber
 
+def checkInbred(inputhere): #define inbreeding chance
+    number = inputhere
+    inbreedinglevel = 0
+    chance = random.randint(0,100)
+    if number == 0:
+        inbeedinglevel = False
+
+    elif number == 1:
+        if ((0 < chance) and (chance < 40)):
+            inbreedinglevel = True
+        else:
+            inbreedinglevel = False
+
+    elif number == 2:
+        if ((0 < chance) and (chance < 60)):
+            inbreedinglevel = True
+        else:
+            inbreedinglevel = False
+    elif number == 3:
+        if ((0 < chance) and (chance < 90)):
+            inbreedinglevel = True
+        else:
+            inbreedinglevel = False
+    return inbreedinglevel
+
+def typeInbreeding():
+    inbreedingtype = 0
+    chance = random.uniform(0,100)
+    if chance > 50:
+        inbreedingtype = 3
+    else:
+        inbreedingtype = 4
+    return inbreedingtype
+
+def giveMutationType3(inbred): # structural inbreeding mutations
+    chance = random.randint(1,3)
+    inbreedingnumber = 0
+    if chance == 1:
+        inbreedingnumber = 21
+    elif chance == 2:
+        inbreedingnumber = 22
+    elif chance == 3:
+        inbreedingnumber = 23
+
+    return inbreedingnumber
+
+def giveMutationType4(inbred): # color inbreeding mutations
+    chance = random.randint(1,3)
+    inbreedingnumber = 0
+    if chance == 1:
+        inbreedingnumber = 501
+    elif chance == 2:
+        inbreedingnumber = 502
+    elif chance == 3:
+        inbreedingnumber = 503
+
+    return inbreedingnumber
+
 def chooseColor(Parent1,Parent2):
     chance = random.uniform(0,100)
     randcol = random.uniform(101,106)
     babyDomColor = None
     babySecColor = None
     if ((Parent1.getSecColor() == None) and (Parent2.getSecColor()) == None) : # for monocolor parents
-        print "FIRST LOOP"
         if ((0 < chance) and (chance < 40)):
             babyDomColor = Parent1.getDomColor()
         elif ((40 < chance) and (chance < 80)):
@@ -242,6 +300,7 @@ def chooseColor(Parent1,Parent2):
 
     return [babyDomColor,babySecColor]
 
+
 def makeBaby(Parent1,Parent2):
     babyStamina = chooseStamina(Parent1,Parent2)
     babySpeed = chooseSpeed(Parent1,Parent2)
@@ -249,9 +308,21 @@ def makeBaby(Parent1,Parent2):
     babyStrength = chooseStrength(Parent1,Parent2)
     babyFerocity = chooseFerocity(Parent1,Parent2)
 
-    print "Please give your new Chomper a name!\n"
+    print("Please give your new Chomper a name!\n")
     babyName = str(raw_input())
     c = Creature(0,babyStrength,babyStamina,babyIntelligence,babySpeed,babyFerocity)
+    c.generateInbreedingList(Parent1, Parent2)
+    inbred = c.checkInbreeding()
+    inlvl = checkInbred(inbred)
+    if inlvl == False:
+        pass
+    else:
+        intype = typeInbreeding()
+        if intype == 3:
+            intypen = giveMutationType3()
+        elif intype == 4:
+            intypen = giveMutationType4()
+        c.setMutationNumber(intypen)
     c.checkNegativeStats()
     c.calculatePrice()
     mutlvl = checkMutation(Parent1,Parent2)

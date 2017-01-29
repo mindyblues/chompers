@@ -1,17 +1,22 @@
-from creature import Creature
+from creature import *
 import random
-from colors import Color
+from colors import *
 
 def generateBaseCreature():
     maximum = 100
     startinglist = []
     for thefive in range(5):
-        i = random.uniform(0,maximum)
+        i = random.randint(10,maximum)
         startinglist.append(i)
     a = (Color.getColor(random.randint(101,106)))
     creature = Creature(0,startinglist[0],startinglist[1],startinglist[2],startinglist[3],startinglist[4])
     creature.setDomColor(a)
-    creature.setSecColor(None)
+    chance = random.randint(0,10)
+    if chance == 1:
+        b = (Color.getColor(random.randint(101,106)))
+        creature.setSecColor(b)
+    else:
+        creature.setSecColor(None)
     creature.setName(generateRandomName())
     creature.calculatePrice()
     if creature.baseStatsUnder(200):
@@ -34,7 +39,6 @@ def generateStarterList():
     for thesix in range(6):
         starterlist.append(generateBaseCreature())
     return starterlist
-
 
 def generateBaseGrid(listofcreatures):
 # name | Color1 | Color2

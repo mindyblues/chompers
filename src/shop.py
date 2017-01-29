@@ -21,3 +21,16 @@ class ShopItem:
 class Shop:
     def __init__(self):
         self.m_inventory = ShopInventory()
+
+    def sellYouShit(self,Player):
+        playerin = Player.getInventory()
+        playeritemlist = playerin.getItemList()
+        print("Which creature would you like to sell?\n")
+        print(playerin)
+        print("Select by name!\n")
+        selected = str(input())
+        for creature in playeritemlist:
+            if selected == creature.getName():
+                addedmoney = creature.getPrice()
+                playeritemlist.remove(creature)
+                Player.addMoney(addedmoney)
