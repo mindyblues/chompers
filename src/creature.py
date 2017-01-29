@@ -196,7 +196,7 @@ class Creature(QObject):
             self.m_price -= 50
         elif mutationnumber == 503:
             self.m_price -= 50
-
+        self.checkNegativeStats()
 ############################## QT STUFF #################
     def handle_clicked(self):
         qDebug('test message')

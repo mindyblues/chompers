@@ -15,3 +15,7 @@ theshop.sellYouShit(player1)
 inventory = player1.getInventory()
 print(inventory)
 '''
+c = generateBaseCreature()
+c.setMutationNumber(23)
+c.giveStatBoost(c.getMutationNumber())
+print(c)
