@@ -1,7 +1,6 @@
 # to do list
-PRIORITY 1 Highest 3 Lowest
-3. babies should be 60% likely to catch the mutation of their Parent if such exists (inheritance system
-for mutations like there is for colors)
+'''
+PRIORITY| 1 Highest to 3 Lowest
 1. set up day system LOL fix world system
 2. egg system
 
@@ -13,3 +12,7 @@ egg hatches, get creature, can breed again
 
 
 # BUGS
+
+* When running gameLoop, will cycle through all names and return "names don't match" until it hits the correct once
+* asks me to rename second critter twice
+* 

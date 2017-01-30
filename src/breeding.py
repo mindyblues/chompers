@@ -75,12 +75,14 @@ def checkMutation(Parent1,Parent2):
             mutationlevel = 3
 
     elif (Parent1.getMutation() + Parent2.getMutation()) > 0:
-        if ((0 < chance) and (chance < 700)):
+        if ((0 < chance) and (chance < 300)):
             mutationlevel = 1
-        elif ((700 < chance) and (chance < 980)):
+        elif ((300 < chance) and (chance < 400)):
             mutationlevel = 2
-        else:
+        elif ((400 < chance) and (chance < 450)):
             mutationlevel = 3
+        else:
+            mutationlevel = 0
     return mutationlevel
 
 def typeMutation():
@@ -189,6 +191,33 @@ def giveMutationType4(inbred): # color inbreeding mutations
         inbreedingnumber = 503
 
     return inbreedingnumber
+
+def checkInheritedMut():
+    mutationparent1 = Parent1.getMutationNumber()
+    mutationparent2 = Parent2.getMutationNumber()
+    mutationnumber = 0
+    chance = random.randint(0,10)
+
+    if mutationparent1 == 0 and mutationparent2 == 0:
+        mutationnumber = 0
+    elif mutationparent1 == 0 and mutationparent2 != 0:
+        if chance > 6:
+            mutationnumber = mutationparent2
+        else:
+            mutationnumber = 0
+    elif mutationparent1 != 0 and mutationparent2 == 0:
+        if chance > 6:
+            mutationnumber = mutationparent1
+        else:
+            mutationnumber = 0
+    elif mutationparent1 != 0 and mutationparent2 != 0:
+        if ((0 < chance) and (chance > 3)):
+            mutationnumber = mutationparent1
+        elif ((3 < chance) and (chance > 6)):
+            mutationnumber = mutationparent2
+        else:
+            mutationnumber = 0
+    return mutationnumber
 
 def chooseColor(Parent1,Parent2):
     chance = random.uniform(0,100)
@@ -343,6 +372,15 @@ def makeBaby(Parent1,Parent2):
     babyName = str(raw_input())
     c = Creature(0,babyStrength,babyStamina,babyIntelligence,babySpeed,babyFerocity)
     c.generateInbreedingList(Parent1, Parent2)
+    c.setMutationNumber(checkInheritedMut())
+    mutlvl = checkMutation(Parent1,Parent2)
+    if (mutlvl > 0):
+        muttype = typeMutation()
+        if muttype == 1:
+            muttypen = giveMutationType1(mutlvl)
+        else:
+            muttypen = giveMutationType2(mutlvl)
+        c.setMutationNumber(muttypen)
     inbred = c.checkInbreeding()
     inlvl = checkInbred(inbred)
     if inlvl == False:
@@ -356,14 +394,7 @@ def makeBaby(Parent1,Parent2):
         c.setMutationNumber(intypen)
     c.checkNegativeStats()
     c.calculatePrice()
-    mutlvl = checkMutation(Parent1,Parent2)
-    if (mutlvl > 0):
-        muttype = typeMutation()
-        if muttype == 1:
-            muttypen = giveMutationType1(mutlvl)
-        else:
-            muttypen = giveMutationType2(mutlvl)
-        c.setMutationNumber(muttypen)
+
 
     c.setBabyName(babyName)
     l = chooseColor(Parent1,Parent2)

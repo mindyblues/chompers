@@ -1,6 +1,8 @@
 # world.py
 from player import *
 from colors import *
+from creature import *
+from shop import *
 from breeding import *
 from helperfunctions import *
 class World():
@@ -16,19 +18,19 @@ class World():
         print("Hello! What would you like to be called?\n")
         playername = str(input())
         self.m_player = Player(playername)
-        print("INTRO TEXT")
+        print("INTRO TEXT\n YOU MAY CHOOSE 2 CRITTERS")
         a = generateStarterList()
         copyofa = list(a)
         generateBaseGrid(a)
         kaput = True
         while kaput == True:
             # generateBaseGrid(a)
-            print("WHATCHA WANT 1")
+            print("Which creature would you like first?") #will be button press once QT integrated
             first = input()
             for creature in a:
                 if creature.getName() == first:
                     self.m_player.addCreature(creature)
-                    print("WHAT CALL CRITTER")
+                    print("Please rename your critter!")
                     newname = input()
                     copyofa.remove(creature)
                     creature.resetName(newname)
@@ -41,12 +43,12 @@ class World():
                 print("Deleted something")
                 kaput = False
         generateBaseGrid(a)
-        print("WHATCHA WANT 2")
+        print("Which creature would you like second?")
         second =  input()
         for creature in a:
             if creature.getName() == second:
                 self.m_player.addCreature(creature)
-                print("WHAT CALL CRITTER 2")
+                print("Please rename your second critter!")
                 newname = input()
                 creature.resetName(newname)
                 a.remove(creature)
