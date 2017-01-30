@@ -100,8 +100,7 @@ class Creature(QObject):
         self.m_name = name
 
     def resetName(self,name):
-        newname = str(input())
-        self.setName(newname)
+        self.setName(name)
 
     def setMutationNumber(self,mutationNumber):
         self.m_mutation = mutationNumber

@@ -196,19 +196,19 @@ def chooseColor(Parent1,Parent2):
     babyDomColor = None
     babySecColor = None
     if ((Parent1.getSecColor() == None) and (Parent2.getSecColor()) == None) : # for monocolor parents
-        if ((0 < chance) and (chance < 40)):
+        if ((0 < chance) and (chance <= 40)):
             babyDomColor = Parent1.getDomColor()
-        elif ((40 < chance) and (chance < 80)):
+        elif ((40 < chance) and (chance <= 80)):
             babyDomColor = Parent2.getDomColor()
-        elif ((80 < chance) and (chance < 89)):
+        elif ((80 < chance) and (chance <= 89)):
             babyDomColor = Parent1.getDomColor()
             babySecColor = getDomColor(Parent2)
-        elif ((89 < chance) and (chance < 97)):
+        elif ((89 < chance) and (chance <= 97)):
             babyDomColor = Parent2.getDomColor()
             babySecColor = Parent1.getDomColor()
-        elif ((97 < chance) and (chance < 98)):
+        elif ((97 < chance) and (chance <= 98)):
             babyDomColor = Color.getColor(randcol)
-        elif ((98 < chance) and (chance < 99)):
+        elif ((98 < chance) and (chance <= 99)):
             babyDomColor = Parent1.getDomColor()
             babySecColor = Color.getColor(randcol)
         else:
@@ -216,87 +216,118 @@ def chooseColor(Parent1,Parent2):
             babySecColor = Color.getColor(randcol)
 
     elif ((Parent1.getSecColor() != None) and (Parent2.getSecColor()) == None): # Parent 1 bicolor, # Parent 2 monocolor
-        if ((0 < chance) and (chance < 20)):
+        if ((0 < chance) and (chance <= 20)):
             babyDomColor = Parent1.getDomColor()
-        elif ((20 < chance) and (chance < 40)):
+        elif ((20 < chance) and (chance <= 40)):
             babyDomColor = Parent2.getDomColor()
-        elif ((40 < chance) and (chance < 55)):
+        elif ((40 < chance) and (chance <= 55)):
             babyDomColor = Parent1.getDomColor()
-        elif ((55 < chance) and (chance < 68)):
+        elif ((55 < chance) and (chance <= 68)):
             babyDomColor = Parent1.getDomColor()
             babySecColor = Parent2.getDomColor()
-        elif ((68 < chance) and (chance < 81)):
+        elif ((68 < chance) and (chance <= 81)):
             babyDomColor = Parent2.getDomColor()
             babySecColor = Parent1.getDomColor()
-        elif ((81 < chance) and (chance < 86)):
+        elif ((81 < chance) and (chance <= 86)):
             babyDomColor = Parent2.getDomColor()
             babySecColor = Parent1.getDomColor()
-        elif ((86 < chance) and (chance < 91)):
+        elif ((86 < chance) and (chance <= 91)):
             babyDomColor = getSecColor(Parent1)
             babySecColor = getDomColor(Parent2)
-        elif ((91 < chance) and (chance < 93)):
+        elif ((91 < chance) and (chance <= 93)):
             babyDomColor = Parent1.getDomColor()
             babySecColor = Color.getColor(randcol)
-        elif ((93 < chance) and (chance < 95)):
+        elif ((93 < chance) and (chance <= 95)):
             babyDomColor = Parent2.getDomColor()
-            babySecColor = Color.getColor(randcol) # must pull from random Level 1 color
-        elif ((95 < chance) and (chance < 96)):
-            babyDomColor = Color.getColor(randcol) #same
-        elif ((96 < chance) and (chance < 97)):
+            babySecColor = Color.getColor(randcol)
+        elif ((95 < chance) and (chance <= 96)):
+            babyDomColor = Color.getColor(randcol)
+        elif ((96 < chance) and (chance <= 97)):
             babyDomColor = Color.getColor(randcol)
             babySecColor = Parent1.getSecColor()
-        elif ((97 < chance) and (chance < 98)):
+        elif ((97 < chance) and (chance <= 98)):
             babyDomColor = Color.getColor(randcol)
             babySecColor = Parent1.getDomColor()
-        elif ((98 < chance) and (chance < 99)):
+        elif ((98 < chance) and (chance <= 99)):
             babyDomColor = Color.getColor(randcol)
             babySecColor = Parent2.getDomColor()
-        elif ((97 < chance) and (chance < 98)):
+        elif ((97 < chance) and (chance <= 98)):
             babyDomColor = Parent1.getSecColor()
             babySecColor = Color.getColor(randcol)
 
     elif ((Parent1.getSecColor() == None) and (Parent2.getSecColor()) != None): #Parent1 monocolor, parent 2 bicolor
-        if ((0 < chance) and (chance < 20)):
+        if ((0 < chance) and (chance <= 20)):
             babyDomColor = Parent1.getDomColor()
-        elif ((20 < chance) and (chance < 40)):
+        elif ((20 < chance) and (chance <= 40)):
             babyDomColor = Parent2.getDomColor()
-        elif ((40 < chance) and (chance < 55)):
+        elif ((40 < chance) and (chance <= 55)):
             babyDomColor = Parent2.getSecColor()
-        elif ((55 < chance) and (chance < 68)):
+        elif ((55 < chance) and (chance <= 68)):
             babyDomColor = Parent1.getDomColor()
             babySecColor = Parent2.getDomColor()
-        elif ((68 < chance) and (chance < 81)):
+        elif ((68 < chance) and (chance <= 81)):
             babyDomColor = Parent2.getDomColor()
             babySecColor = Parent1.getDomColor()
-        elif ((81 < chance) and (chance < 86)):
+        elif ((81 < chance) and (chance <= 86)):
             babyDomColor = Parent1.getDomColor()
             babySecColor = Parent2.getSecColor()
-        elif ((86 < chance) and (chance < 91)):
+        elif ((86 < chance) and (chance <= 91)):
             babyDomColor = Parent2.getSecColor()
             babySecColor = Parent1.getDomColor()
-        elif ((91 < chance) and (chance < 93)):
+        elif ((91 < chance) and (chance <= 93)):
             babyDomColor = Parent1.getDomColor()
-            babySecColor = Color.getColor(randcol) # must pull from random Level 1 color
-        elif ((93 < chance) and (chance < 95)):
+            babySecColor = Color.getColor(randcol)
+        elif ((93 < chance) and (chance <= 95)):
             babyDomColor = Parent2.getDomColor()
-            babySecColor = Color.getColor(randcol) # must pull from random Level 1 color
-        elif ((95 < chance) and (chance < 96)):
-            babyDomColor = Color.getColor(randcol) #same
-        elif ((96 < chance) and (chance < 97)):
+            babySecColor = Color.getColor(randcol)
+        elif ((95 < chance) and (chance <= 96)):
+            babyDomColor = Color.getColor(randcol)
+        elif ((96 < chance) and (chance <= 97)):
             babyDomColor = Color.getColor(randcol)
             babySecColor = Parent2.getSecColor()
-        elif ((97 < chance) and (chance < 98)):
+        elif ((97 < chance) and (chance <= 98)):
             babyDomColor = Color.getColor(randcol)
             babySecColor = Parent1.getDomColor()
-        elif ((98 < chance) and (chance < 99)):
+        elif ((98 < chance) and (chance <= 99)):
             babyDomColor = Color.getColor(randcol)
             babySecColor = Parent2.getDomColor()
-        elif ((97 < chance) and (chance < 98)):
+        elif ((97 < chance) and (chance <= 98)):
             babyDomColor = Parent2.getSecColor()
             babySecColor = Color.getColor(randcol)
 
     else:
-        pass
+        if ((0 < chance) and (chance <= 5)):
+            babyDomColor = Parent1.getDomColor()
+        elif ((5 < chance) and (chance <= 10)):
+            babyDomColor = Parent2.getDomColor()
+        elif ((10 < chance) and (chance <= 12)):
+            babyDomColor = Parent1.getSecColor()
+        elif ((12 < chance) and (chance <= 14)):
+            babyDomColor = Parent2.getSecColor()
+        elif ((14 < chance) and (chance <= 15)):
+            babyDomColor = Parent1.getDomColor()
+            babySecColor = Color.getColor(randcol)
+        elif ((15 < chance) and (chance <= 16)):
+            babyDomColor = Parent2.getDomColor()
+            babySecColor = Color.getColor(randcol)
+        elif ((16 < chance) and (chance <= 36)):
+            babyDomColor = Parent1.getDomColor()
+            babySecColor = Parent2.getDomColor()
+        elif ((36 < chance) and (chance <= 56)):
+             babyDomColor = Parent2.getDomColor()
+             babySecColor = Parent1.getDomColor()
+        elif ((56 < chance) and (chance <= 68)):
+             babyDomColor = Parent1.getDomColor()
+             babySecColor = Parent1.getSecColor()
+        elif ((68 < chance) and (chance <= 80)):
+            babyDomColor = Parent2.getDomColor()
+            babySecColor = Parent2.getSecColor()
+        elif ((80 < chance) and (chance <= 90)):
+            babyDomColor = Parent1.getDomColor()
+            babySecColor = Parent2.getSecColor()
+        elif ((90 < chance) and (chance <= 100)):
+            babyDomColor = Parent2.getDomColor()
+            babySecColor = Parent1.getSecColor()
 
     return [babyDomColor,babySecColor]
 
